@@ -12,12 +12,14 @@ Responsive design
 ## Built with
 Fronted technologies:
 
-[React] 
+[React]
+: We implement many hooks as useRef, useReduce , 
 [Redux]
 [React Router]
 [styled-components]
 [Fake Store API]
 [Figma]
+
 
 ## Screenshots
 
