@@ -1,0 +1,131 @@
+* {
+  margin: 0;
+  padding: 0;
+  max-height:100vh;
+  max-width: 100vw;
+}
+
+body{
+  font-family: 'Poppins', sans-serif;
+}
+
+/* IMPORTING GOOGLE FONTS */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+img{
+  width:100%;
+
+}
+/* ============== ICONS ============== */
+
+.Header_svgCart__182oV {
+  width: 30px;
+  height: 30px;
+  cursor:pointer;
+}
+
+.Header_svgSearch__3CjyM{
+  cursor:pointer;
+}
+
+ .Header_cartLengthBlack__ChUiR {
+  width: 29px;
+  height: 29px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  font-size: .9rem;
+  font-weight: 700;
+  background:black;
+  color:white;
+}
+
+.Header_svgArrowBlack__2-N38 {
+  left: 27px;
+  color: black;
+  position:absolute;
+
+}
+ /* ========== LAYOUT , CONTAINER ,  NAV  ============= */
+
+.layout{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 50px 0 320px;
+}
+
+.main-container{
+  margin-top:30px;
+}
+
+.nav{
+  background-color:rgb(72, 204, 240);
+  height: 80px;
+  display:flex;
+  justify-content: space-between;
+  padding:0px 20px 0px 20px;
+  padding-bottom: 0;
+  align-items: center;
+}
+
+/* ============== PARA LA TARJETA DE PRODUCTOS ========= */
+.productos{
+  display: grid;
+  margin: 0;
+  grid-template-columns: repeat(3,1fr);
+  grid-column-gap: 20px;
+  grid-row-gap: 40px;
+}
+
+.producto{
+  margin-right: 30px;
+  display: block;
+  position: relative;
+  padding: 0;
+  margin: 0 0 20px 20px;
+  text-align: left;
+}
+.producto__button{
+  float: none;
+  display: inline-block;
+  background-color: transparent;
+  padding: 5px 12px;
+  border: 3px double #e4e4e4;
+  font-size: 1rem;
+  line-height: 1.5;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  border-radius: 0;
+  text-transform: none;
+  border-color:black;
+  border-style:solid;
+  background-color: #0a0a0a;
+  color:white;
+  cursor:pointer;
+} 
+.producto__button:hover{
+
+  color: #0a0a0a;
+  background-color:white;
+} 
+
+ /* ============ CART ===============  */
+
+.cart-box{
+    width: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position:relative;
+ }
+
+
