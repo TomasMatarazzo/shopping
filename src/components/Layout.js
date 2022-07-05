@@ -1,22 +1,18 @@
-import { Component } from 'react'
 import PropTypes from 'prop-types'
 
-class Layout extends Component {
-  static propTypes = {
-    children: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.node),
-      PropTypes.node
-    ]).isRequired
-  }
-
-  render () {
-    return (
+const Layout = ({ children }) => {
+  return (
         <div className = "layout">
             <div className = "main-container">
-                {this.props.children}
+                {children}
             </div>
         </div>)
-  }
 }
 
+Layout.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired
+}
 export default Layout

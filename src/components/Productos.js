@@ -1,12 +1,8 @@
-import { Component } from 'react'
 import Producto from './Producto'
 import PropTypes from 'prop-types'
 
-class Productos extends Component {
-  render () {
-    const { productos, agregarAlCarro } = this.props
-
-    return (<div className = "productos">
+const Productos = ({ productos, agregarAlCarro }) => {
+  return (<div className = "productos">
         {productos.map((producto) =>
         <Producto
             agregarAlCarro = {agregarAlCarro}
@@ -14,7 +10,6 @@ class Productos extends Component {
             producto = {producto}
         />)}
     </div>)
-  }
 }
 
 Productos.propTypes = {

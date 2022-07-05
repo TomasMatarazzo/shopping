@@ -1,4 +1,3 @@
-import { Component } from 'react'
 import PropTypes from 'prop-types'
 import Button from './Button'
 
@@ -10,16 +9,9 @@ const styles = {
   }
 }
 
-class Producto extends Component {
-  componentDidMount () {
-    console.log(this.props)
-  }
-
-  render () {
-    const { producto, agregarAlCarro } = this.props
-    const { name, price, img } = producto
-    console.log(price, name)
-    return (
+const Producto = ({ producto, agregarAlCarro }) => {
+  const { name, price, img } = producto
+  return (
         <div className = "producto">
             <img src = {img}></img>
             <div style = {styles.box}>
@@ -28,8 +20,7 @@ class Producto extends Component {
                 onClick = { () => agregarAlCarro(producto)}>Agregar al carro</Button>
             </div>
         </div>
-    )
-  }
+  )
 }
 
 Producto.propTypes = {

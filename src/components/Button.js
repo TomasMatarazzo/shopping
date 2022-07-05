@@ -1,9 +1,6 @@
-import { Component } from 'react'
 
-class Button extends Component {
-  render () {
-    return (<button {...this.props} className = "producto__button"/>)
-  }
+const Button = (props) => {
+  return (<button {...props} className = "producto__button"/>)
 }
 
 export default Button
