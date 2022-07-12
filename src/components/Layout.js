@@ -3,9 +3,7 @@ import PropTypes from 'prop-types'
 const Layout = ({ children }) => {
   return (
         <div className = "layout">
-            <div className = "main-container">
                 {children}
-            </div>
         </div>)
 }
 

@@ -1,11 +1,10 @@
 import { Component } from 'react'
 import './App.css'
-import Productos from './components/Productos'
 // import Button from './components/Button'
-import Layout from './components/Layout'
-import Nav from './components/Nav'
+import Nav from './pages/Nav'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
-import Home from './components/Home'
+import Home from './pages/Home'
+import Menu from './pages/Menu'
 
 // import Button from './components/Button'
 
@@ -28,6 +27,11 @@ class App extends Component {
   // cart we add the quantity of it.
 
   // CHANGE THIS FUNCTION FOR SET REDUCER :)
+
+  deleteFromCart = (product) => {
+
+  }
+
   addToCart = (product) => {
     if (this.state.cart.find((x) => x.name === product.name)) {
       const newCart = this.state.cart.map(x => x.name === product.name ? ({ ...product, cant: x.cant + 1 }) : x)
@@ -40,18 +44,16 @@ class App extends Component {
       }))
   }
 
-  addTOcart = () => {}
+  // addTOcart = () => {}
   render () {
     return (
         <div className="App">
           <BrowserRouter>
             <Nav></Nav>
-            <Layout>
               <Routes>
-                <Route path = "/" element = { <Productos productos = {this.state.productos} agregarAlCarro = {this.addToCart}/>}/>
-                <Route path = "/products" element = { <Home/>}/>
+                <Route path = "/products" element = { <Menu productos = {this.state.productos} agregarAlCarro = {this.addToCart}/>}/>
+                <Route path = "/" element = { <Home/>}/>
               </Routes>
-            </Layout>
           </BrowserRouter>
         </div>
     )
