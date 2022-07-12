@@ -1,7 +1,7 @@
 import Layout from '../components/Layout'
-import Productos from '../components/Productos'
+import Productos from './Menu/Productos'
 import PropTypes from 'prop-types'
-import Options from '../components/Options'
+import Options from './Menu/Options'
 
 const Menu = ({ productos, agregarAlCarro }) => {
   return (

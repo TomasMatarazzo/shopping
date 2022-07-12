@@ -249,6 +249,7 @@ img{
     justify-content: space-between;
     position:relative;
     margin-left:200px;
+    cursor:pointer;
  }
 
 .body2{

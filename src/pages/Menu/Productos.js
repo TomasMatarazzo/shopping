@@ -7,7 +7,7 @@ const Productos = ({ productos, agregarAlCarro }) => {
         {productos.map((producto) =>
         <Producto
             agregarAlCarro = {agregarAlCarro}
-            key = {producto.name}
+            key = {producto.id}
             producto = {producto}
         />)}
     </div>)
