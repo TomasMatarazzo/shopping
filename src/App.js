@@ -10,16 +10,27 @@ import { TYPES } from './state/actions/types.js'
 // import Button from './components/Button'
 const initialState = {
   products: [
-    { name: 'Tomate', price: 2500, img: '/productos/2.webp', id: 1 },
-    { name: 'Arbejas', price: 1500, img: '/productos/1.webp', id: 2 },
-    { name: 'Lechuga', price: 1700, img: '/productos/3.webp', id: 3 },
-    { name: 'Lechuga', price: 1700, img: '/productos/1.webp', id: 4 },
-    { name: 'Tomate', price: 2500, img: '/productos/2.webp', id: 5 },
-    { name: 'Arbejas', price: 1500, img: '/productos/1.webp', id: 6 },
-    { name: 'Lechuga', price: 1700, img: '/productos/3.webp', id: 7 },
-    { name: 'Lechuga', price: 1700, img: '/productos/1.webp', id: 8 }
+    { name: 'Tomate', price: 2500, img: '/productos/2.webp', id: 1, category: 1 },
+    { name: 'Arbejas', price: 1500, img: '/productos/1.webp', id: 2, category: 2 },
+    { name: 'Lechuga', price: 1700, img: '/productos/3.webp', id: 3, category: 2 },
+    { name: 'Lechuga', price: 1700, img: '/productos/1.webp', id: 4, category: 2 },
+    { name: 'Tomate', price: 2500, img: '/productos/2.webp', id: 5, category: 1 },
+    { name: 'Arbejas', price: 1500, img: '/productos/1.webp', id: 6, category: 0 },
+    { name: 'Lechuga', price: 1700, img: '/productos/3.webp', id: 7, category: 0 },
+    { name: 'Lechuga', price: 1700, img: '/productos/1.webp', id: 8, category: 1 }
   ],
-  cart: []
+  cart: [],
+  productsByCategory: [
+    { name: 'Tomate', price: 2500, img: '/productos/2.webp', id: 1, category: 1 },
+    { name: 'Arbejas', price: 1500, img: '/productos/1.webp', id: 2, category: 2 },
+    { name: 'Lechuga', price: 1700, img: '/productos/3.webp', id: 3, category: 2 },
+    { name: 'Lechuga', price: 1700, img: '/productos/1.webp', id: 4, category: 2 },
+    { name: 'Tomate', price: 2500, img: '/productos/2.webp', id: 5, category: 1 },
+    { name: 'Arbejas', price: 1500, img: '/productos/1.webp', id: 6, category: 0 },
+    { name: 'Lechuga', price: 1700, img: '/productos/3.webp', id: 7, category: 0 },
+    { name: 'Lechuga', price: 1700, img: '/productos/1.webp', id: 8, category: 1 }
+  ],
+  categoryName: 'All'
 }
 
 const cartReducer = (state, action) => {
@@ -27,10 +38,36 @@ const cartReducer = (state, action) => {
     case TYPES.ADDTOCART:{
       const itemSelected = state.products.filter((product) => product.id === action.payload)
       console.log(state.cart)
-      return itemSelected ? { ...state, cart: [...state.cart, itemSelected[0]] } : state
+      const isRepeated = state.cart.find((product) => product.id === action.payload)
+      if (isRepeated === undefined) {
+        return itemSelected ? { ...state, cart: [...state.cart, { ...itemSelected[0], quantity: 1 }] } : state
+      } else {
+        return { ...state, cart: state.cart.map((product) => product.id === action.payload ? { ...product, quantity: product.quantity++ } : product) }
+      }
     }
-    case TYPES.DELETEFROMCART:
-      return state
+    case TYPES.DELETEFROMCART:{
+      // rest one quantity of the product if quantity == 0 delete that product
+      const newItem = state.cart.map((product) => product.id === action.payload ? { ...product, quantity: product.quantity-- } : product)
+      const filterItem = newItem.filter((product) => product.quantity !== 0)
+      return { ...state, cart: filterItem }
+    }
+    case TYPES.CHANGECATEGORY:{
+      if (action.payload === -1) { return { ...state, productsByCategory: state.products, categoryName: 'All' } }
+      const newCategory = state.products.filter(product => product.category === action.payload)
+      let categoryName
+      switch (action.payload) {
+        case (1):
+          categoryName = 'Pantalones'
+          break
+        case 2:
+          categoryName = 'Remeras'
+          break
+        case 0:
+          categoryName = 'Hoodies'
+          break
+      }
+      return { ...state, productsByCategory: newCategory, categoryName }
+    }
     default:
       return state
   }
@@ -39,16 +76,23 @@ const App = () => {
   const [state, dispatch] = useReducer(cartReducer, initialState)
 
   const addToCart = (id) => {
-    console.log(id)
     dispatch({ type: TYPES.ADDTOCART, payload: id })
+  }
+
+  const deleteFromCart = (id) => {
+    dispatch({ type: TYPES.DELETEFROMCART, payload: id })
+  }
+
+  const changeCategory = (id) => {
+    dispatch({ type: TYPES.CHANGECATEGORY, payload: id })
   }
 
   return (
         <div className="App">
           <BrowserRouter>
-            <Nav cart = {state.cart}></Nav>
+            <Nav cart = {state.cart} eliminarDelCarro = {deleteFromCart} agregarAlCarro = {addToCart}></Nav>
               <Routes>
-                <Route path = "/products" element = { <Menu productos = {state.products} agregarAlCarro = {addToCart}/>}/>
+                <Route path = "/products" element = { <Menu productos = {state.productsByCategory} categoryName = {state.categoryName} agregarAlCarro = {addToCart} changeCategory = {changeCategory}/>}/>
                 <Route path = "/" element = { <Home/>}/>
               </Routes>
           </BrowserRouter>

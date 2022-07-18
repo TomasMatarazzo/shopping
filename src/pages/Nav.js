@@ -8,21 +8,23 @@ const style = {
     flexDirection: 'row'
   }
 }
-const Nav = ({ cart }) => {
+const Nav = ({ cart, eliminarDelCarro, agregarAlCarro }) => {
   return (
         <div className = "nav">
             <Link to = "/" className = "navLink"><h1>NatShein</h1></Link>
             <div style = {style.flexbox}>
             {/* ICONO DE BUSQUEDA */}
               <Link to = "/products" className = "navLink"><h1>Shop</h1></Link>
-              <Chart value = "2" cart = {cart}></Chart>
+              <Chart value = {cart.length} cart = {cart} eliminarDelCarro = {eliminarDelCarro} agregarAlCarro = {agregarAlCarro}></Chart>
            </div>
         </div>
   )
 }
 
 Nav.propTypes = {
-  cart: PropTypes.array
+  cart: PropTypes.array,
+  eliminarDelCarro: PropTypes.func,
+  agregarAlCarro: PropTypes.func
 }
 
 export default Nav

@@ -100,11 +100,16 @@ img{
 
 .menu-image{
   position:absolute;
-  width:400px;
-  height:550px;
-  z-index: 5;
-  right: 5%;
+  background-image: url(/public/fondo2.png);
+  width:550px;
+  height:600px;
+  z-index:1;
+  right: 15%;
   top:15%;
+  background-color: none;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .menu-title{

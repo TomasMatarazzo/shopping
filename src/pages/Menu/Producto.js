@@ -1,24 +1,33 @@
 import PropTypes from 'prop-types'
 import Button from '../../components/Button'
+import styled from 'styled-components'
 
-const styles = {
-  box: {
-    display: 'flex',
-    width: '100%',
-    justifyContent: 'space-between'
-  }
-}
+const Flex = styled.div`
+    display: flex;
+    flex-direction:column;
+    width: 100%;
+
+
+    h2{
+      font-size:1.4rem;
+    }
+    h2,h3{
+      align-self:center;
+      font-weight:500;
+    }
+`
 
 const Producto = ({ producto, agregarAlCarro }) => {
   const { name, price, img, id } = producto
   return (
         <div className = "producto">
             <img src = {img}></img>
-            <div style = {styles.box}>
-                <h3>{name} Price : {price}</h3>
+            <Flex>
+                <h2>{name}</h2>
+                <h3>${price}</h3>
                 <Button
                 onClick = { () => agregarAlCarro(id)}>Agregar al carro</Button>
-            </div>
+            </Flex>
         </div>
   )
 }
