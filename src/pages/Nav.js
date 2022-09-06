@@ -5,7 +5,8 @@ import PropTypes from 'prop-types'
 const style = {
   flexbox: {
     display: 'flex',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    margin: '10px'
   }
 }
 const Nav = ({ cart, eliminarDelCarro, agregarAlCarro }) => {
@@ -15,6 +16,8 @@ const Nav = ({ cart, eliminarDelCarro, agregarAlCarro }) => {
             <div style = {style.flexbox}>
             {/* ICONO DE BUSQUEDA */}
               <Link to = "/products" className = "navLink"><h1>Shop</h1></Link>
+              <Link to = "/login" className = "navLink"><h1>Login</h1></Link>
+              <Link to = "/signup" className = "navLink"><h1>Setup</h1></Link>
               <Chart value = {cart.length} cart = {cart} eliminarDelCarro = {eliminarDelCarro} agregarAlCarro = {agregarAlCarro}></Chart>
            </div>
         </div>

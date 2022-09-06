@@ -5,6 +5,7 @@ import Nav from './pages/Nav'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import Home from './pages/Home'
 import Menu from './pages/Menu'
+import { Login } from './pages/Login'
 import { TYPES } from './state/actions/types.js'
 
 // import Button from './components/Button'
@@ -92,6 +93,7 @@ const App = () => {
           <BrowserRouter>
             <Nav cart = {state.cart} eliminarDelCarro = {deleteFromCart} agregarAlCarro = {addToCart}></Nav>
               <Routes>
+                <Route path = "/login" element = { <Login/>}/>
                 <Route path = "/products" element = { <Menu productos = {state.productsByCategory} categoryName = {state.categoryName} agregarAlCarro = {addToCart} changeCategory = {changeCategory}/>}/>
                 <Route path = "/" element = { <Home/>}/>
               </Routes>
