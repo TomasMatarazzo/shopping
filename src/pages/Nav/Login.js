@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import Layout from '../components/Layout'
+import Layout from '../../components/Layout'
 import styled from 'styled-components'
-import authService from '../services/auth'
+import authService from '../../services/auth'
+import PropTypes from 'prop-types'
+import { useNavigate } from 'react-router-dom'
 
 const MainContainer = styled.div`
     display: flex;
@@ -38,13 +40,28 @@ const MainContainer = styled.div`
     }
 `
 
-export const Login = () => {
+export const Login = ({ setInfo, setUser, setCart, setToken }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const navigate = useNavigate()
 
+  // Una vez hago el login obtengo toda la informacion del usuario
   const loginUser = async (event) => {
     event.preventDefault()
-    await authService.login({ email, password })
+    try {
+      const response = await authService.login({ email, password })
+      const { token, user } = response
+      setCart(user.cart)
+      setInfo({ email: user.email, direccion: user.direccion, edad: user.edad, nombre: user.nombre, numero: user.numero })
+      setUser()
+      const newToken = `bearer ${token}`
+      window.localStorage.setItem(
+        'userEcommerce', JSON.stringify({ email: user.email, direccion: user.direccion, edad: user.edad, nombre: user.nombre, numero: user.numero, token: newToken, cart: user.cart })
+      )
+      navigate('/info')
+    } catch (e) {
+      console.log('Hubo un error')
+    }
   }
   const newEmail = ({ target }) => {
     setEmail(target.value)
@@ -66,4 +83,12 @@ export const Login = () => {
             </MainContainer>
         </Layout>
   )
+}
+
+Login.propTypes = {
+  setInfo: PropTypes.func,
+  setUser: PropTypes.func,
+  setCart: PropTypes.func,
+  setToken: PropTypes.func
+
 }

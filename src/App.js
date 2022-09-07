@@ -1,17 +1,23 @@
-import { useReducer, useEffect, useState } from 'react'
+import { useReducer, useEffect } from 'react'
+import { useNavigate, Routes, Route } from 'react-router-dom'
 import './App.css'
 // import Button from './components/Button'
 import Nav from './pages/Nav'
-import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import Menu from './pages/Menu'
-import { Signup } from './pages/Signup'
-import { Login } from './pages/Login'
+import { Signup } from './pages/Nav/Signup'
+import { Login } from './pages/Nav/Login'
 import { TYPES } from './state/actions/types.js'
+import { cartReducer } from './state/reducers/cartReducer'
+import Home from './pages/Home'
+import { AccountInfo } from './pages/Nav/AccountInfo'
 
 // import Button from './components/Button'
 const initialState = {
+  user: null,
+  info: null,
+  token: null,
   products: [
-    { name: 'Tomate', price: 2500, img: '/productos/2.webp', id: 1, category: 1 },
+    { name: 'remolacha', price: 2500, img: '/productos/2.webp', id: '63160709c47f2db35b7c75dd', category: 1 },
     { name: 'Arbejas', price: 1500, img: '/productos/1.webp', id: 2, category: 2 },
     { name: 'Lechuga', price: 1700, img: '/productos/3.webp', id: 3, category: 2 },
     { name: 'Lechuga', price: 1700, img: '/productos/1.webp', id: 4, category: 2 },
@@ -22,7 +28,7 @@ const initialState = {
   ],
   cart: [],
   productsByCategory: [
-    { name: 'Tomate', price: 2500, img: '/productos/2.webp', id: 1, category: 1 },
+    { name: 'remolacha', price: 2500, img: '/productos/2.webp', id: '63160709c47f2db35b7c75dd', category: 1 },
     { name: 'Arbejas', price: 1500, img: '/productos/1.webp', id: 2, category: 2 },
     { name: 'Lechuga', price: 1700, img: '/productos/3.webp', id: 3, category: 2 },
     { name: 'Lechuga', price: 1700, img: '/productos/1.webp', id: 4, category: 2 },
@@ -34,78 +40,62 @@ const initialState = {
   categoryName: 'All'
 }
 
-const cartReducer = (state, action) => {
-  switch (action.type) {
-    case TYPES.ADDTOCART:{
-      const itemSelected = state.products.filter((product) => product.id === action.payload)
-      console.log(state.cart)
-      const isRepeated = state.cart.find((product) => product.id === action.payload)
-      if (isRepeated === undefined) {
-        return itemSelected ? { ...state, cart: [...state.cart, { ...itemSelected[0], quantity: 1 }] } : state
-      } else {
-        return { ...state, cart: state.cart.map((product) => product.id === action.payload ? { ...product, quantity: product.quantity++ } : product) }
-      }
-    }
-    case TYPES.DELETEFROMCART:{
-      // rest one quantity of the product if quantity == 0 delete that product
-      const newItem = state.cart.map((product) => product.id === action.payload ? { ...product, quantity: product.quantity-- } : product)
-      const filterItem = newItem.filter((product) => product.quantity !== 0)
-      return { ...state, cart: filterItem }
-    }
-    case TYPES.CHANGECATEGORY:{
-      if (action.payload === -1) { return { ...state, productsByCategory: state.products, categoryName: 'All' } }
-      const newCategory = state.products.filter(product => product.category === action.payload)
-      let categoryName
-      switch (action.payload) {
-        case (1):
-          categoryName = 'Pantalones'
-          break
-        case 2:
-          categoryName = 'Remeras'
-          break
-        case 0:
-          categoryName = 'Hoodies'
-          break
-      }
-      return { ...state, productsByCategory: newCategory, categoryName }
-    }
-    default:
-      return state
-  }
-}
 const App = () => {
   const [state, dispatch] = useReducer(cartReducer, initialState)
-  const [user, setUser] = useState(false)
 
-  const userConnected = () => {
-    setUser(null)
-    console.log(user)
+  const navigate = useNavigate()
+
+  const navigateHome = () => {
+    navigate('/')
+  }
+  const firstRender = () => {
+    const info = JSON.parse(window.localStorage.getItem('userEcommerce'))
+    const { token, nombre, direccion, edad, numero, email, cart } = info
+    setCart(cart)
+    setInfo({ nombre, direccion, edad, numero, email })
+    setUser()
+    setToken(token)
   }
 
-  useEffect(userConnected, [])
+  useEffect(firstRender, [])
 
   const addToCart = (id) => {
     dispatch({ type: TYPES.ADDTOCART, payload: id })
   }
-
   const deleteFromCart = (id) => {
     dispatch({ type: TYPES.DELETEFROMCART, payload: id })
   }
-
   const changeCategory = (id) => {
     dispatch({ type: TYPES.CHANGECATEGORY, payload: id })
+  }
+  const setInfo = (info) => {
+    dispatch({ type: TYPES.SETINFO, payload: info })
+  }
+  const setUser = () => {
+    dispatch({ type: TYPES.SETUSER })
+  }
+  const setCart = (cart) => {
+    dispatch({ type: TYPES.SETCART, payload: cart })
+  }
+  const setToken = (token) => {
+    dispatch({ type: TYPES.SETTOKEN, payload: token })
+  }
+  const logout = (token) => {
+    navigateHome()
+    dispatch({ type: TYPES.LOGOUT })
+    window.localStorage.removeItem('userEcommerce')
   }
 
   return (
         <div className="App">
-          <BrowserRouter>
-            <Nav cart = {state.cart} eliminarDelCarro = {deleteFromCart} agregarAlCarro = {addToCart}></Nav>
+            <Nav cart = {state.cart} eliminarDelCarro = {deleteFromCart} agregarAlCarro = {addToCart} user = {state.user} info = {state.info}></Nav>
               <Routes>
-                <Route path = "/login" element = { <Login/>}/>
-                <Route path = "/products" element = { <Menu productos = {state.productsByCategory} categoryName = {state.categoryName} agregarAlCarro = {addToCart} changeCategory = {changeCategory}/>}/>
+                <Route path = "/login" element = { <Login setInfo = {setInfo} setUser = {setUser} setCart = {setCart} setToken = {setToken}/>}/>
+                <Route path = "/products" element = { <Menu productos = {state.productsByCategory} categoryName = {state.categoryName} agregarAlCarro = {addToCart} changeCategory = {changeCategory} token = {state.token}/>}/>
+                <Route path = "/" element = {<Home></Home>}></Route>
                 <Route path = "/signup" element = { <Signup/>}/>
+                <Route path = "/info" element = { <AccountInfo info = {state.info} logout = {logout}/>}/>
               </Routes>
-          </BrowserRouter>
         </div>
   )
 }

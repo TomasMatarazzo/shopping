@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import Layout from '../components/Layout'
+import Layout from '../../components/Layout'
 import styled from 'styled-components'
-import authService from '../services/auth'
+import authService from '../../services/auth'
 
 const MainContainer = styled.div`
     display: flex;
@@ -45,7 +45,7 @@ export const Signup = () => {
     event.preventDefault()
     try {
       await authService.signup({
-        email: user.email, password: user.password
+        email: user.email, password: user.password, nombre: user.nombre, direccion: user.direccion, edad: user.edad, numero: user.numero
       })
       setUser({ email: '', password: '', nombre: '', direccion: '', edad: '', numero: '', avatar: '' })
       // cartel diciendo que todo ocurrio perfectamente

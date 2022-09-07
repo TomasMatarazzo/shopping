@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import Button from '../../components/Button'
 import styled from 'styled-components'
+import cartService from '../../services/cart'
 
 const Flex = styled.div`
     display: flex;
@@ -17,8 +18,21 @@ const Flex = styled.div`
     }
 `
 
-const Producto = ({ producto, agregarAlCarro }) => {
+const Producto = ({ producto, agregarAlCarro, token }) => {
   const { name, price, img, id } = producto
+
+  const addProduct = async () => {
+    // axios add product to the database
+    try {
+      console.log(id)
+      const { token } = JSON.parse(window.localStorage.getItem('userEcommerce'))
+      await cartService.addProductToCart(id, token)
+      agregarAlCarro(id)
+    } catch (e) {
+      console.log('hubo un error')
+    }
+  }
+
   return (
         <div className = "producto">
             <img src = {img}></img>
@@ -26,7 +40,7 @@ const Producto = ({ producto, agregarAlCarro }) => {
                 <h2>{name}</h2>
                 <h3>${price}</h3>
                 <Button
-                onClick = { () => agregarAlCarro(id)}>Agregar al carro</Button>
+                onClick = {addProduct}>Agregar al carro</Button>
             </Flex>
         </div>
   )
@@ -34,7 +48,8 @@ const Producto = ({ producto, agregarAlCarro }) => {
 
 Producto.propTypes = {
   producto: PropTypes.object,
-  agregarAlCarro: PropTypes.func
+  agregarAlCarro: PropTypes.func,
+  token: PropTypes.string
 }
 
 export default Producto
