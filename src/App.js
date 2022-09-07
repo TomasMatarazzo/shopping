@@ -1,10 +1,10 @@
-import { useReducer } from 'react'
+import { useReducer, useEffect, useState } from 'react'
 import './App.css'
 // import Button from './components/Button'
 import Nav from './pages/Nav'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
-import Home from './pages/Home'
 import Menu from './pages/Menu'
+import { Signup } from './pages/Signup'
 import { Login } from './pages/Login'
 import { TYPES } from './state/actions/types.js'
 
@@ -75,6 +75,14 @@ const cartReducer = (state, action) => {
 }
 const App = () => {
   const [state, dispatch] = useReducer(cartReducer, initialState)
+  const [user, setUser] = useState(false)
+
+  const userConnected = () => {
+    setUser(null)
+    console.log(user)
+  }
+
+  useEffect(userConnected, [])
 
   const addToCart = (id) => {
     dispatch({ type: TYPES.ADDTOCART, payload: id })
@@ -95,7 +103,7 @@ const App = () => {
               <Routes>
                 <Route path = "/login" element = { <Login/>}/>
                 <Route path = "/products" element = { <Menu productos = {state.productsByCategory} categoryName = {state.categoryName} agregarAlCarro = {addToCart} changeCategory = {changeCategory}/>}/>
-                <Route path = "/" element = { <Home/>}/>
+                <Route path = "/signup" element = { <Signup/>}/>
               </Routes>
           </BrowserRouter>
         </div>

@@ -17,7 +17,7 @@ const Nav = ({ cart, eliminarDelCarro, agregarAlCarro }) => {
             {/* ICONO DE BUSQUEDA */}
               <Link to = "/products" className = "navLink"><h1>Shop</h1></Link>
               <Link to = "/login" className = "navLink"><h1>Login</h1></Link>
-              <Link to = "/signup" className = "navLink"><h1>Setup</h1></Link>
+              <Link to = "/signup" className = "navLink"><h1>Signup</h1></Link>
               <Chart value = {cart.length} cart = {cart} eliminarDelCarro = {eliminarDelCarro} agregarAlCarro = {agregarAlCarro}></Chart>
            </div>
         </div>

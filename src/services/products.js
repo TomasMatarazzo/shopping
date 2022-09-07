@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = 'http://localhost:3001/notes'
+const baseUrl = 'http://localhost:8080/api/products'
 
 let token = null
 
@@ -17,6 +17,7 @@ const create = async newObject => {
 }
 
 const getAll = () => {
+  console.log('probando la conexion')
   const request = axios.get(baseUrl)
   return request.then(response => response.data)
 }

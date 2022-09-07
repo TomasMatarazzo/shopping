@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Layout from '../components/Layout'
 import styled from 'styled-components'
+import authService from '../services/auth'
 
 const MainContainer = styled.div`
     display: flex;
@@ -41,9 +42,9 @@ export const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const loginUser = (event) => {
+  const loginUser = async (event) => {
     event.preventDefault()
-    console.log('Se apreto el boton')
+    await authService.login({ email, password })
   }
   const newEmail = ({ target }) => {
     setEmail(target.value)
