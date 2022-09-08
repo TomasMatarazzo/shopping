@@ -50,11 +50,13 @@ const App = () => {
   }
   const firstRender = () => {
     const info = JSON.parse(window.localStorage.getItem('userEcommerce'))
-    const { token, nombre, direccion, edad, numero, email, cart } = info
-    setCart(cart)
-    setInfo({ nombre, direccion, edad, numero, email })
-    setUser()
-    setToken(token)
+    if (info !== null) {
+      const { token, nombre, direccion, edad, numero, email, cart } = info
+      setCart(cart)
+      setInfo({ nombre, direccion, edad, numero, email })
+      setUser()
+      setToken(token)
+    }
   }
 
   useEffect(firstRender, [])

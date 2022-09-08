@@ -1,21 +1,6 @@
 import axios from 'axios'
 const baseUrl = 'http://localhost:8080/api/auth'
 
-// let token = null
-
-// const setToken = newToken => {
-//   token = `bearer ${newToken}`
-// }
-
-// const create = async newObject => {
-//   const config = {
-//     headers: { Authorization: token }
-//   }
-
-//   const response = await axios.post(`${baseUrl}/signup`, newObject, config)
-//   return response.data
-// }
-
 const login = async (user) => {
   console.log(user)
   axios.defaults.withCredentials = true

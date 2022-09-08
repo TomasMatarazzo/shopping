@@ -49,6 +49,7 @@ export const Login = ({ setInfo, setUser, setCart, setToken }) => {
   const loginUser = async (event) => {
     event.preventDefault()
     try {
+      console.log(email, password)
       const response = await authService.login({ email, password })
       const { token, user } = response
       setCart(user.cart)

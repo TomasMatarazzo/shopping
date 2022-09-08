@@ -25,8 +25,19 @@ const Producto = ({ producto, agregarAlCarro, token }) => {
     // axios add product to the database
     try {
       console.log(id)
-      const { token } = JSON.parse(window.localStorage.getItem('userEcommerce'))
+      const info = JSON.parse(window.localStorage.getItem('userEcommerce'))
+      const { token } = info
       await cartService.addProductToCart(id, token)
+      const isRepeated = info.cart.find((product) => product.id === id)
+      let nuevaCarta = 0
+      console.log(isRepeated)
+      if (isRepeated === undefined) {
+        nuevaCarta = { ...info, cart: [...info.cart, { ...producto, quantity: 1 }] }
+      } else {
+        nuevaCarta = { ...info, cart: info.cart.map((product) => product.id === id ? { ...product, quantity: product.quantity + 1 } : product) }
+      }
+      console.log(nuevaCarta)
+      window.localStorage.setItem('userEcommerce', JSON.stringify(nuevaCarta))
       agregarAlCarro(id)
     } catch (e) {
       console.log('hubo un error')
