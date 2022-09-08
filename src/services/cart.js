@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = 'http://localhost:8080/api/carrito'
+const baseUrl = 'http://localhost:5050/api/carrito'
 
 const addProductToCart = async (id, token) => {
   const response = await axios.post(`${baseUrl}/${id}`, { headers: { Authorization: token } })

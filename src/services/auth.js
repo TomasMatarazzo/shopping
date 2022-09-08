@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = 'http://localhost:8080/api/auth'
+const baseUrl = 'http://localhost:5050/api/auth'
 
 const login = async (user) => {
   console.log(user)

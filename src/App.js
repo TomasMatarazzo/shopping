@@ -17,25 +17,17 @@ const initialState = {
   info: null,
   token: null,
   products: [
-    { name: 'remolacha', price: 2500, img: '/productos/2.webp', id: '63160709c47f2db35b7c75dd', category: 1 },
-    { name: 'Arbejas', price: 1500, img: '/productos/1.webp', id: 2, category: 2 },
-    { name: 'Lechuga', price: 1700, img: '/productos/3.webp', id: 3, category: 2 },
-    { name: 'Lechuga', price: 1700, img: '/productos/1.webp', id: 4, category: 2 },
-    { name: 'Tomate', price: 2500, img: '/productos/2.webp', id: 5, category: 1 },
-    { name: 'Arbejas', price: 1500, img: '/productos/1.webp', id: 6, category: 0 },
-    { name: 'Lechuga', price: 1700, img: '/productos/3.webp', id: 7, category: 0 },
-    { name: 'Lechuga', price: 1700, img: '/productos/1.webp', id: 8, category: 1 }
+    { name: 'Buzo blanco', price: 2500, img: '/productos/2.webp', id: 1, category: 1 },
+    { name: 'Buzo verde', price: 1500, img: '/productos/1.webp', id: 2, category: 2 },
+    { name: 'Buzo negro', price: 1700, img: '/productos/3.webp', id: 3, category: 3 },
+    { name: 'Buzo rojo', price: 1700, img: '/productos/3.webp', id: 4, category: 0 }
   ],
   cart: [],
   productsByCategory: [
-    { name: 'remolacha', price: 2500, img: '/productos/2.webp', id: '63160709c47f2db35b7c75dd', category: 1 },
-    { name: 'Arbejas', price: 1500, img: '/productos/1.webp', id: 2, category: 2 },
-    { name: 'Lechuga', price: 1700, img: '/productos/3.webp', id: 3, category: 2 },
-    { name: 'Lechuga', price: 1700, img: '/productos/1.webp', id: 4, category: 2 },
-    { name: 'Tomate', price: 2500, img: '/productos/2.webp', id: 5, category: 1 },
-    { name: 'Arbejas', price: 1500, img: '/productos/1.webp', id: 6, category: 0 },
-    { name: 'Lechuga', price: 1700, img: '/productos/3.webp', id: 7, category: 0 },
-    { name: 'Lechuga', price: 1700, img: '/productos/1.webp', id: 8, category: 1 }
+    { name: 'Buzo blanco', price: 2500, img: '/productos/2.webp', id: 1, category: 1 },
+    { name: 'Buzo verde', price: 1500, img: '/productos/1.webp', id: 2, category: 2 },
+    { name: 'Buzo negro', price: 1700, img: '/productos/3.webp', id: 3, category: 3 },
+    { name: 'Buzo rojo', price: 1700, img: '/productos/3.webp', id: 4, category: 0 }
   ],
   categoryName: 'All'
 }
