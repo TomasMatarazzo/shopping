@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = 'http://localhost:5050/api/auth'
+const baseUrl = 'https://ecommercecoderr.herokuapp.com/api/auth'
 
 const login = async (user) => {
   console.log(user)
