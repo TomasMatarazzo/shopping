@@ -1,5 +1,5 @@
 import axios from 'axios'
-const productionUrl = 'https://ecommercecoderr.herokuapp.com'
+const productionUrl = 'https://ecommercecoderr.herokuapp.com/api/carrito'
 // const devUrl = 'http://localhost:5050/api/carrito'
 
 const addProductToCart = async (id, token) => {
