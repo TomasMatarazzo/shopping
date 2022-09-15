@@ -49,9 +49,9 @@ export const Login = ({ setInfo, setUser, setCart, setToken }) => {
   const loginUser = async (event) => {
     event.preventDefault()
     try {
-      console.log(email, password)
       const response = await authService.login({ email, password })
       const { token, user } = response
+      console.log(token, user)
       setCart(user.cart)
       setInfo({ email: user.email, direccion: user.direccion, edad: user.edad, nombre: user.nombre, numero: user.numero })
       setUser()
@@ -61,7 +61,7 @@ export const Login = ({ setInfo, setUser, setCart, setToken }) => {
       )
       navigate('/info')
     } catch (e) {
-      console.log('Hubo un error')
+      console.log(e)
     }
   }
   const newEmail = ({ target }) => {

@@ -32,7 +32,6 @@ export const CartMenu = ({ isVisible, cart, eliminarDelCarro, agregarAlCarro }) 
   return (
     <Div className = {isVisible ? '' : 'shrink'}>
         <H1>Your shopping cart</H1>
-        {console.log(cart.length + 'hola')}
         {cart.length !== 0 ? cart.map(product => <ProductCart key = {product.id} product = {product} eliminarDelCarro = {eliminarDelCarro} agregarAlCarro = {agregarAlCarro}></ProductCart>) : <h1>Your bag is empty</h1>}
         <Button>Browse Products</Button>
     </Div>

@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import Options from './Menu/Options'
 
 const Menu = ({ productos, agregarAlCarro, changeCategory, categoryName, token }) => {
-  console.log(productos)
   return (
             <Layout>
                 <Options changeCategory = {changeCategory} categoryName = {categoryName}></Options>

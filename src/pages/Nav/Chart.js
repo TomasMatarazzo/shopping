@@ -6,7 +6,6 @@ const Chart = ({ cart, value, eliminarDelCarro, agregarAlCarro }) => {
   const [showCart, setShowBar] = useState(false)
 
   const showNumber = (n) => {
-    console.log(n)
     if (n > 0) {
       if (n > 9) { n = '9+' } // javascript hace lo que quiere con los tipos :)
       return <div className="Header_cartLengthBlack__ChUiR">{n}<svg className="Header_svgArrowBlack__2-N38" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12l-18 12v-24z"></path></svg></div>

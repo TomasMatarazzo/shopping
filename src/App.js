@@ -10,7 +10,6 @@ import { TYPES } from './state/actions/types.js'
 import { cartReducer } from './state/reducers/cartReducer'
 import Home from './pages/Home'
 import { AccountInfo } from './pages/Nav/AccountInfo'
-import { API } from './API'
 
 // import Button from './components/Button'
 const initialState = {
@@ -91,7 +90,6 @@ const App = () => {
                 <Route path = "/signup" element = { <Signup/>}/>
                 <Route path = "/info" element = { <AccountInfo info = {state.info} logout = {logout}/>}/>
               </Routes>
-              <API></API>
         </div>
   )
 }
