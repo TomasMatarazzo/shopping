@@ -1,8 +1,9 @@
 import axios from 'axios'
-const baseUrl = 'http://localhost:5050/api/carrito'
+const productionUrl = 'https://ecommercecoderr.herokuapp.com'
+// const devUrl = 'http://localhost:5050/api/carrito'
 
 const addProductToCart = async (id, token) => {
-  const response = await axios.post(`${baseUrl}/${id}`, { hello: 'world' }, { headers: { Authorization: token } })
+  const response = await axios.post(`${productionUrl}/${id}`, { hello: 'world' }, { headers: { Authorization: token } })
   return response.data
 }
 
@@ -11,7 +12,7 @@ const deleteProductFromCart = async (newObject, id, token) => {
     headers: { Authorization: token }
   }
 
-  const response = await axios.post(`${baseUrl}/${id}`, { hello: 'world' }, config)
+  const response = await axios.post(`${productionUrl}/${id}`, { hello: 'world' }, config)
   return response.data
 }
 

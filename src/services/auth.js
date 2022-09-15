@@ -1,16 +1,17 @@
 import axios from 'axios'
-const baseUrl = 'http://localhost:5050/api/auth'
+const productionUrl = 'https://ecommercecoderr.herokuapp.com/api/auth'
+// const devUrl = 'http://localhost:5050/api/auth'
 
 const login = async (user) => {
   axios.defaults.withCredentials = true
-  const request = axios.post(`${baseUrl}/login`, user)
+  const request = axios.post(`${productionUrl}/login`, user)
   return request.then(response => {
     return response.data
   })
 }
 const signup = (newObject) => {
   axios.defaults.withCredentials = true
-  const request = axios.post(`${baseUrl}/signup`, newObject)
+  const request = axios.post(`${productionUrl}/signup`, newObject)
   return request.then(response => {
     return response.data
   })
