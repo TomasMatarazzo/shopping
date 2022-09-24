@@ -6,7 +6,7 @@ import Button from '../../components/Button'
 
 const MainContainer = styled.div`
     display: flex;
-    flex-direction:column;
+    flex-direction:row;
     width: 100%;
     height:calc(100vh - 130px);
     align-items:center;
@@ -33,6 +33,36 @@ const MainContainer = styled.div`
     }
 `
 
+const Info = styled.div`
+    width:75%;
+    height:100%;
+    border-right: 1px solid #E1E1E1;
+`
+
+const LeftMenu = styled.div`
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    width: 25%;
+    height:100%;
+    border-right: 1px solid #000000;
+    padding-left:0px;
+`
+
+const Ul = styled.ul`
+  padding-left: 0;
+  padding-right: 0;
+  margin-bottom: 0;
+  margin-top:20px;
+
+  li{
+    list-style:none;
+    padding: 7px 0px;
+    font-size:1.14rem;
+    text-align:left;
+  }
+`
+
 export const AccountInfo = ({ info, logout }) => {
   const { nombre, email, direccion, edad, numero } = info
   useEffect(() => {
@@ -41,7 +71,19 @@ export const AccountInfo = ({ info, logout }) => {
   return (
        <Layout>
             <MainContainer >
-                <h3>Nombre</h3>
+              <LeftMenu>
+                  <div className = "avatar-img"></div>
+                  <h3>{email}</h3>
+                  <p>{nombre}</p>
+                  <Ul >
+                   <li onClick = { () => console.log('nashe')}>All</li>
+                   <li onClick = { () => console.log('nashe')}>Hoodies</li>
+                   <li onClick = { () => console.log('nashe')}>Remeras</li>
+                   <li onClick = { () => console.log('nashe')}>Camperas</li>
+                  </Ul>
+              </LeftMenu>
+              <Info>
+              <h3>Nombre</h3>
                 <p>{nombre}</p>
                 <h3>Email</h3>
                 <p>{email}</p>
@@ -52,6 +94,8 @@ export const AccountInfo = ({ info, logout }) => {
                 <h3>Numero</h3>
                 <p>{numero}</p>
                 <Button onClick = {logout}>Loguout</Button>
+              </Info>
+
             </MainContainer>
         </Layout>
   )

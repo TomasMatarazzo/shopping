@@ -79,17 +79,17 @@ img{
 
 .nav{
   height: 80px;
+
   display:flex;
   justify-content: space-between;
-  padding:0px 20px 20px 20px;
+  padding:10px 20px 0px 20px;
   align-items: center;
-  width: 90%;
-  top: 4%;
-  left: 5%;
+  width: 100%;
   position: absolute;
   z-index: 5;
   cursor: default;
   font-size: 0.65rem;
+  box-shadow: 20px 0 20px 0 rgb(0 0 0 / 50%)
 }
 
 /* ============== PAGINA MENU ========= */
@@ -261,6 +261,17 @@ img{
 .body2{
   background-color: #333138;
   height: 1000px;
+}
+
+/* =========== ABOUT ============ */
+
+.avatar-img{
+    background-image: url(/public/avatar.png);
+    border-radius:50px;
+    z-index:5;
+    width:96px;
+    height: 96px;
+    margin-bottom:10px;
 }
 
 
