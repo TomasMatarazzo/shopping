@@ -19,8 +19,7 @@ const Nav = ({ cart, eliminarDelCarro, agregarAlCarro, user, info }) => {
               {
                 user == null
                   ? <>
-                  <Link to = "/login" className = "navLink"><h1>Login</h1></Link>
-                  <Link to = "/signup" className = "navLink"><h1>Signup</h1></Link>
+                  <Link to = "/account" className = "navLink"><h1>Login</h1></Link>
                     </>
                   : <Link to = "/info" className = "navLink" ><h1>Account</h1></Link>
               }

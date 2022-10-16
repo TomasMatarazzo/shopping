@@ -10,6 +10,7 @@ import { TYPES } from './state/actions/types.js'
 import { cartReducer } from './state/reducers/cartReducer'
 import Home from './pages/Home'
 import { AccountInfo } from './pages/Nav/AccountInfo'
+import Account from './pages/Nav/Account'
 
 // import Button from './components/Button'
 const initialState = {
@@ -86,9 +87,11 @@ const App = () => {
               <Routes>
                 <Route path = "/login" element = { <Login setInfo = {setInfo} setUser = {setUser} setCart = {setCart} setToken = {setToken}/>}/>
                 <Route path = "/products" element = { <Menu productos = {state.productsByCategory} categoryName = {state.categoryName} agregarAlCarro = {addToCart} changeCategory = {changeCategory} token = {state.token}/>}/>
-                <Route path = "/" element = {<Home></Home>}></Route>
+                <Route path = "/" element = {<Home token = {state.token}></Home>}></Route>
                 <Route path = "/signup" element = { <Signup/>}/>
+                <Route path = "/account" element = { <Account setInfo = {setInfo} setUser = {setUser} setCart = {setCart} setToken = {setToken}/>}></Route>
                 <Route path = "/info" element = { <AccountInfo info = {state.info} logout = {logout}/>}/>
+
               </Routes>
         </div>
   )

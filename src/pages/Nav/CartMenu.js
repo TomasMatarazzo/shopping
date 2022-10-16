@@ -12,11 +12,11 @@ const Div = styled.div`
     overflow:auto;
     height:100%;
     position:fixed;
-    -webkit-transition:all ease-in-out 0.3s;
+    -webkit-transition:all ease-in-out 0.7s;
 
     &.shrink{
     right:calc(-33.3% - 25px);
-    all ease-in-out 0.3s;
+    all ease-in-out 0.7s;
 
     }
 `
