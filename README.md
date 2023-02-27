@@ -1,4 +1,4 @@
-# Shopping-Front 🛒:
+# Shopping-Front 🛒
 
 ## Descripción general
 
