@@ -1,4 +1,4 @@
-# Shopping-Front
+# Shopping-Front 🛒:
 
 ## Descripción general
 
@@ -32,4 +32,4 @@ Para instalar el proyecto, simplemente clona el repositorio y ejecuta `npm insta
 
 ## Conclusión
 
-Este proyecto de carrito de compras de comercio electrónico con React y Redux es un ejemplo perfecto de una aplicación de comercio electrónico moderna y completamente funcional. Demuestra la competencia en el uso de tecnologías de vanguardia y en la creación de interfaces de alta calidad y fáciles de usar.
+Este proyecto de carrito de compras de comercio electrónico con React y Redux es un ejemplo perfecto de una aplicación de comercio electrónico moderna y completamente funcional. Demuestra la competencia en el uso de tecnologías de vanguardia y en la creación de interfaces de alta calidad y fáciles de usar. Si te gusto agrega una ⭐
