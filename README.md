@@ -1,4 +1,4 @@
-# Proyecto de carrito de compras de comercio electrónico con React y Redux
+# Shopping-Front
 
 ## Descripción general
 
